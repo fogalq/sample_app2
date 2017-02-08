@@ -93,3 +93,23 @@ aside {
 header.navbar.navbar-fixed-top.navbar-inverse {
     margin-bottom: 15px !important;
 }
+
+#sig {
+    float: right;
+    
+}
+
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}

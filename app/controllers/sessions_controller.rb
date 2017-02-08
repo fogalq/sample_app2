@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    include SessionsHelper
   def new
   end
     
@@ -6,7 +7,12 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page.
-        session[:user_id] = user.id
+        log_in user
+        if params[:session][:remember_me] == '1'
+  remember(user)
+else
+  forget(user)
+end
         redirect_to user
     else
       # Create an error message.
@@ -16,7 +22,7 @@ class SessionsController < ApplicationController
     end
     
     def destroy
-        session[:user_id] = nil
+        log_out
         redirect_to login_path
     end
 end
